@@ -1,0 +1,37 @@
+{
+    "name": "lemonstand/omnipay-elavon",
+    "type": "library",
+    "description": "Elavon payments driver for the Omnipay payment processing library",
+    "keywords": [
+        "elavon",
+        "converge",
+        "gateway",
+        "merchant",
+        "omnipay",        
+        "pay",
+        "payment",
+        "payments"
+    ],
+    "homepage": "https://github.com/lemonstand/omnipay-elavon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LemonStand",
+            "email": "andy@lemonstand.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Elavon\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
