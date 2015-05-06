@@ -8,7 +8,7 @@ class ConvergeGatewayTest extends GatewayTestCase
     {
         parent::setUp();
 
-        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());        
+        $this->gateway = new ConvergeGateway($this->getHttpClient(), $this->getHttpRequest());
     }
 
     public function testAuthorize()
