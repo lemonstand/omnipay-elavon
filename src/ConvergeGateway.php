@@ -52,4 +52,22 @@ class ConvergeGateway extends AbstractGateway
     {
         return $this->setParameter('password', $value);
     }
+
+    /**
+     * @param array $parameters
+     * @return \Omnipay\Elavon\Message\AuthorizeRequest
+     */
+    public function authorize(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Elavon\Message\ConvergeAuthorizeRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     * @return \Omnipay\Elavon\Message\PurchaseRequest
+     */
+    public function purchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Elavon\Message\ConvergePurchaseRequest', $parameters);
+    }
 }
