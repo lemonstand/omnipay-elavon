@@ -8,7 +8,7 @@ class ConvergeResponse extends AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-        parse_str($data, $this->data);
+        parse_str(implode('&', preg_split('/\n/', $data)), $this->data);
     }
 
     public function isSuccessful()
