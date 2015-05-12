@@ -83,7 +83,7 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
             'ssl_merchant_id' => $this->getMerchantId(),
             'ssl_user_id' => $this->getUsername(),
             'ssl_pin' => $this->getPassword(),
-            'ssl_test_mode' => $this->getTestMode(),
+            'ssl_test_mode' => ($this->getTestMode()) ? 'true' : 'false',
             'ssl_show_form' => $this->getSslShowForm(),
             'ssl_result_format' => $this->getResultFormat()
         ];
