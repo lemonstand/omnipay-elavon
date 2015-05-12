@@ -149,7 +149,7 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
 
     protected function getBaseData()
     {
-        $data = [
+        $data = array(
             'ssl_merchant_id' => $this->getMerchantId(),
             'ssl_user_id' => $this->getUsername(),
             'ssl_pin' => $this->getPassword(),
@@ -159,7 +159,7 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
             'ssl_invoice_number' => $this->getSslInvoiceNumber(),
             'unique_identifier' => $this->getUniqueIdentifier(),
             'vgm_business_unit_id' => $this->getVgmBusinessUnitId()
-        ];
+        );
 
         return $data;
     }

@@ -8,9 +8,8 @@ class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
     {
         $this->validate('amount', 'card');
         $this->getCard()->validate();
-        $data = $this->getBaseData();
 
-        $data += [
+        $data = array(
             'ssl_amount' => $this->getAmount(),
             'ssl_salestax' => $this->getSslSalesTax(),
             'ssl_transaction_type' => $this->transactionType,
@@ -18,9 +17,9 @@ class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
             'ssl_exp_date' => $this->getCard()->getExpiryDate('my'),
             'ssl_cvv2cvc2' => $this->getCard()->getCvv(),
             'ssl_cvv2cvc2_indicator' => ($this->getCard()->getCvv()) ? 1 : 0,
-        ];
+        );
 
-        return $data;
+        return array_merge($this->getBaseData(), $data);
     }
 
     public function sendData($data)
