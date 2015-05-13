@@ -23,6 +23,19 @@ class ConvergeResponse extends AbstractResponse
 
     public function getMessage()
     {
+        if (!$this->isSuccessful()) {
+            return isset($this->data['errorMessage']) ? $this->data['errorMessage'] : null;
+        }
+
         return isset($this->data['ssl_result_message']) ? $this->data['ssl_result_message'] : null;
+    }
+
+    public function getCode()
+    {
+        if (!$this->isSuccessful()) {
+            return isset($this->data['errorCode']) ? $this->data['errorCode'] : null;
+        }
+
+        return $this->data['ssl_result'];
     }
 }
