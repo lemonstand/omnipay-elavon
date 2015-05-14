@@ -31,6 +31,37 @@ The following gateways are provided by this package:
 
 * Converge
 
+```php
+    $gateway = Omnipay::create('Elavon_Converge');
+    $gateway->setMerchantId('[MERCHANT_ID]');
+    $gateway->setUsername('[USER_ID]');
+    $gateway->setPassword('[USER_PIN]');
+
+    // Test mode hits the demo endpoint.
+    $gateway->setTestMode(true);
+
+    try {
+        $params = array(
+            'amount'                => 10.00,
+            'card'                  => $card,
+            'ssl_invoice_number'    => 1,
+            'ssl_show_form'         => 'false',
+            'ssl_result_format'     => 'ASCII',
+        );
+
+        $response = $gateway->purchase($params)->send();
+
+        if ($response->isSuccessful()) {
+            // successful
+        } else {
+            throw new ApplicationException($response->getMessage());
+        }
+    } catch (ApplicationException $e) {
+        throw new ApplicationException($e->getMessage());
+    }
+
+```
+
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
 
