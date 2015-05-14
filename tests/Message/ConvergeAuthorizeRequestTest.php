@@ -11,7 +11,7 @@ class ConvergeAuthorizeRequestTest extends TestCase
             array(
                 'amount' => 10.00,
                 'card' => $this->getValidCard(),
-                'ssl_salestax' => 2.00,
+                'ssl_salestax' => 1.23,
                 'ssl_invoice_number' => 1,
                 'ssl_show_form' => 'false',
                 'ssl_result_format' => 'ASCII',
@@ -25,7 +25,7 @@ class ConvergeAuthorizeRequestTest extends TestCase
     {
         $data = $this->request->getData();
         $this->assertSame('10.00', (string) $data['ssl_amount']);
-        $this->assertSame('2.00', (string) $data['ssl_salestax']);
+        $this->assertSame('1.23', (string) $data['ssl_salestax']);
         $this->assertSame('1', (string) $data['ssl_invoice_number']);
         $this->assertSame('false', $data['ssl_show_form']);
         $this->assertSame('ASCII', $data['ssl_result_format']);

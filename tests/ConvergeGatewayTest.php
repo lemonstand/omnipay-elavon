@@ -12,7 +12,7 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->options = array(
             'amount'    => 10.00,
             'card'      => $this->getValidCard(),
-            'ssl_salestax' => 2.00,
+            'ssl_salestax' => 1.23,
             'ssl_invoice_number' => 1,
             'ssl_show_form' => 'false',
             'ssl_result_format' => 'ASCII',
@@ -31,7 +31,7 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergeAuthorizeRequest', $request);
 
         $this->assertSame('10.00', (string) $request->getAmount());
-        $this->assertSame('2.00', (string) $request->getSslSalesTax());
+        $this->assertSame('1.23', (string) $request->getSslSalesTax());
         $this->assertSame('1', (string) $request->getSslInvoiceNumber());
         $this->assertSame('false', (string) $request->getSslShowForm());
         $this->assertSame('ASCII', (string) $request->getSslResultFormat());
@@ -50,7 +50,7 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergePurchaseRequest', $request);
 
         $this->assertSame('10.00', (string) $request->getAmount());
-        $this->assertSame('2.00', (string) $request->getSslSalesTax());
+        $this->assertSame('1.23', (string) $request->getSslSalesTax());
         $this->assertSame('1', (string) $request->getSslInvoiceNumber());
         $this->assertSame('false', (string) $request->getSslShowForm());
         $this->assertSame('ASCII', (string) $request->getSslResultFormat());
