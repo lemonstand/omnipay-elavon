@@ -15,8 +15,6 @@ class ConvergePurchaseRequestTest extends TestCase
                 'ssl_invoice_number' => 1,
                 'ssl_show_form' => 'false',
                 'ssl_result_format' => 'ASCII',
-                'vgm_business_unit_id' => 'lemon',
-                'unique_identifier' => 'lemon'
             )
         );
     }

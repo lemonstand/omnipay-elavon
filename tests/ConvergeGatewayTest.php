@@ -16,12 +16,10 @@ class ConvergeGatewayTest extends GatewayTestCase
             'ssl_invoice_number' => 1,
             'ssl_show_form' => 'false',
             'ssl_result_format' => 'ASCII',
-            'vgm_business_unit_id' => 'lemon',
-            'unique_identifier' => 'lemon',
             'merchantId' => 'testmerchant1',
             'username' => 'testusername1',
             'password' => 'testpassword1',
-            'ssl_txn_currency_code' => 'USD'
+            'currency' => 'USD'
         );
     }
 
@@ -41,7 +39,7 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('testpassword1', $request->getPassword());
         $this->assertSame('lemon', $request->getVgmBusinessUnitId());
         $this->assertSame('lemon', $request->getUniqueIdentifier());
-        $this->assertSame('USD', $request->getSslTxnCurrencyCode());
+        $this->assertSame('USD', $request->getCurrency());
     }
 
     public function testPurchase()
@@ -60,6 +58,6 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('testpassword1', $request->getPassword());
         $this->assertSame('lemon', $request->getVgmBusinessUnitId());
         $this->assertSame('lemon', $request->getUniqueIdentifier());
-        $this->assertSame('USD', $request->getSslTxnCurrencyCode());
+        $this->assertSame('USD', $request->getCurrency());
     }
 }

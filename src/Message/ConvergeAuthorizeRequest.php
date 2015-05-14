@@ -17,6 +17,13 @@ class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
             'ssl_exp_date' => $this->getCard()->getExpiryDate('my'),
             'ssl_cvv2cvc2' => $this->getCard()->getCvv(),
             'ssl_cvv2cvc2_indicator' => ($this->getCard()->getCvv()) ? 1 : 0,
+            'ssl_first_name' => $this->getCard()->getFirstName(),
+            'ssl_last_name' => $this->getCard()->getLastName(),
+            'ssl_avs_address' => $this->getCard()->getAddress1(),
+            'ssl_address2' => $this->getCard()->getAddress2(),
+            'ssl_city' => $this->getCard()->getCity(),
+            'ssl_state' => $this->getCard()->getState(),
+            'ssl_country' => $this->getCard()->getCountry()
         );
 
         return array_merge($this->getBaseData(), $data);

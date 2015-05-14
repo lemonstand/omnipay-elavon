@@ -102,36 +102,6 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
         return $this->setParameter('ssl_last_name', $value);
     }
 
-    public function getUniqueIdentifier()
-    {
-        return $this->getParameter('unique_identifier');
-    }
-
-    public function setUniqueIdentifier($value)
-    {
-        return $this->setParameter('unique_identifier', $value);
-    }
-
-    public function getVgmBusinessUnitId()
-    {
-        return $this->getParameter('vgm_business_unit_id');
-    }
-
-    public function setVgmBusinessUnitId($value)
-    {
-        return $this->setParameter('vgm_business_unit_id', $value);
-    }
-
-    public function getSslTxnCurrencyCode()
-    {
-        return $this->getParameter('ssl_txn_currency_code');
-    }
-
-    public function setSslTxnCurrencyCode($value)
-    {
-        return $this->setParameter('ssl_txn_currency_code', $value);
-    }
-
     public function getTestEndpoint()
     {
         return $this->testEndpoint;
