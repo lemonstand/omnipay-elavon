@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Date: Wed, 20 Feb 2013 13:55:50 GMT
+Server: Apache
+Content-Length: 214
+Connection: close
+Content-Type: text/plain; charset=utf-8
+
+errorCode=4013
+errorName=PIN Not Supplied
+errorMessage=The PIN was not supplied in the authorization request.
+ssl_status=TEST MODE
