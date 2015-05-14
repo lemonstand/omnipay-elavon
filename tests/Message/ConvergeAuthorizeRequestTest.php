@@ -1,4 +1,4 @@
-<?php namespace Omnipay\Vantiv\Message;
+<?php namespace Omnipay\Elavon\Message;
 
 use Omnipay\Tests\TestCase;
 
