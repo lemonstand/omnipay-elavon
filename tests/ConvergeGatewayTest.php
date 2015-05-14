@@ -37,8 +37,6 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('testusername1', $request->getUsername());
         $this->assertSame('testpassword1', $request->getPassword());
         $this->assertSame('testpassword1', $request->getPassword());
-        $this->assertSame('lemon', $request->getVgmBusinessUnitId());
-        $this->assertSame('lemon', $request->getUniqueIdentifier());
         $this->assertSame('USD', $request->getCurrency());
     }
 
@@ -56,8 +54,6 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('testusername1', $request->getUsername());
         $this->assertSame('testpassword1', $request->getPassword());
         $this->assertSame('testpassword1', $request->getPassword());
-        $this->assertSame('lemon', $request->getVgmBusinessUnitId());
-        $this->assertSame('lemon', $request->getUniqueIdentifier());
         $this->assertSame('USD', $request->getCurrency());
     }
 }

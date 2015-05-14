@@ -127,8 +127,6 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
             'ssl_show_form' => $this->getSslShowForm(),
             'ssl_result_format' => $this->getSslResultFormat(),
             'ssl_invoice_number' => $this->getSslInvoiceNumber(),
-            'unique_identifier' => $this->getUniqueIdentifier(),
-            'vgm_business_unit_id' => $this->getVgmBusinessUnitId()
         );
 
         return $data;
