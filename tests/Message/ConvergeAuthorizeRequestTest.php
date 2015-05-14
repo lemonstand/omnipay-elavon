@@ -10,7 +10,7 @@ class ConvergeAuthorizeRequestTest extends TestCase
         $this->request->initialize(
             array(
                 'amount' => 10.00,
-                'card' => $this->getValidCard()
+                'card' => $this->getValidCard(),
                 'ssl_salestax' => 2.00,
                 'ssl_invoice_number' => 1,
                 'ssl_show_form' => 'false',
