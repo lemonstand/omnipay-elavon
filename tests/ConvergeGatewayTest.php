@@ -17,7 +17,7 @@ class ConvergeGatewayTest extends GatewayTestCase
             'ssl_show_form' => 'false',
             'ssl_result_format' => 'ASCII',
             'vgm_business_unit_id' => 'lemon',
-            'unique_identifier' => 'lemon'
+            'unique_identifier' => 'lemon',
             'merchantId' => 'testmerchant1',
             'username' => 'testusername1',
             'password' => 'testpassword1',
