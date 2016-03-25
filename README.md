@@ -2,7 +2,7 @@
 
 **Elavon payment processing driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/lemonstand/omnipay-elavon.svg)](https://travis-ci.org/lemonstand/omnipay-elavon) [![Coverage Status](https://coveralls.io/repos/github/lemonstand/omnipay-elavon/badge.svg?branch=master)](https://coveralls.io/github/lemonstand/omnipay-elavon?branch=master) [![Latest Stable Version](https://poser.pugx.org/lemonstand/omnipay-elavon/v/stable.svg)](https://packagist.org/packages/lemonstand/omnipay-elavon) [![Total Downloads](https://poser.pugx.org/lemonstand/omnipay-elavon/downloads)](https://packagist.org/packages/lemonstand/omnipay-elavon) [![Latest Unstable Version](https://poser.pugx.org/lemonstand/omnipay-elavon/v/unstable.svg)](https://packagist.org/packages/lemonstand/omnipay-elavon)
+[![Build Status](https://travis-ci.org/lemonstand/omnipay-elavon.svg)](https://travis-ci.org/lemonstand/omnipay-elavon) [![Coverage Status](https://coveralls.io/repos/github/lemonstand/omnipay-elavon/badge.svg?branch=master)](https://coveralls.io/github/lemonstand/omnipay-elavon?branch=master) [![Latest Stable Version](https://poser.pugx.org/lemonstand/omnipay-elavon/v/stable.svg)](https://packagist.org/packages/lemonstand/omnipay-elavon) [![Total Downloads](https://poser.pugx.org/lemonstand/omnipay-elavon/downloads)](https://packagist.org/packages/lemonstand/omnipay-elavon)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Elavon Payments support for Omnipay. Please see the full [Converge documentation](https://www.myvirtualmerchant.com/VirtualMerchant/download/developerGuide.pdf) for more information.
@@ -15,7 +15,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "lemonstand/omnipay-elavon": "dev-master"
+        "lemonstand/omnipay-elavon": "~1.0"
     }
 }
 ```
