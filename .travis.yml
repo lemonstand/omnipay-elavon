@@ -9,5 +9,9 @@ php:
 
 before_script:
   - composer install -n --dev --prefer-source
+  - composer require satooshi/php-coveralls --dev
 
-script: vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text
+script: vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
+
+after_script:
+- php vendor/bin/coveralls -v
