@@ -61,13 +61,13 @@ class ConvergePurchaseRequestTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('APPROVED', $response->getMessage());
         $this->assertSame('0', $response->getCode());
+        $this->assertSame('00000000-0000-0000-0000-00000000000', $response->getTransactionReference());
     }
 
     public function testPurchaseNoVID()
     {
         $this->setMockHttpResponse('NoVIDFailureResponse.txt');
         $response = $this->request->send();
-
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('The VirtualMerchant ID was not supplied in the authorization request.', $response->getMessage());
         $this->assertSame('4000', $response->getCode());
@@ -77,7 +77,6 @@ class ConvergePurchaseRequestTest extends TestCase
     {
         $this->setMockHttpResponse('NoPINFailureResponse.txt');
         $response = $this->request->send();
-
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('The PIN was not supplied in the authorization request.', $response->getMessage());
         $this->assertSame('4013', $response->getCode());

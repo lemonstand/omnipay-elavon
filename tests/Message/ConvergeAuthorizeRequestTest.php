@@ -61,6 +61,7 @@ class ConvergeAuthorizeRequestTest extends TestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('APPROVED', $response->getMessage());
         $this->assertSame('0', $response->getCode());
+        $this->assertSame('00000000-0000-0000-0000-00000000000', $response->getTransactionReference());
     }
 
     public function testAuthorizeNoVID()
