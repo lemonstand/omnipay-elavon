@@ -19,6 +19,30 @@ class ConvergeAuthorizeRequestTest extends TestCase
         );
     }
 
+    public function testSslFirstName()
+    {
+        $this->assertSame($this->request, $this->request->setSslFirstName('Test'));
+        $this->assertSame('Test', $this->request->getSslFirstName());
+    }
+
+    public function testSslLastName()
+    {
+        $this->assertSame($this->request, $this->request->setSslLastName('Mann'));
+        $this->assertSame('Mann', $this->request->getSslLastName());
+    }
+
+    public function testGetTestEndpoint()
+    {
+        $this->assertSame($this->request, $this->request->setTestMode(true));
+        $this->assertSame('https://demo.myvirtualmerchant.com/VirtualMerchantDemo', $this->request->getEndpoint());
+    }
+
+    public function testGetLiveEndpoint()
+    {
+        $this->assertSame($this->request, $this->request->setTestMode(false));
+        $this->assertSame('https://www.myvirtualmerchant.com/VirtualMerchant', $this->request->getEndpoint());
+    }
+
     public function testGetData()
     {
         $data = $this->request->getData();
@@ -43,7 +67,6 @@ class ConvergeAuthorizeRequestTest extends TestCase
     {
         $this->setMockHttpResponse('NoVIDFailureResponse.txt');
         $response = $this->request->send();
-        
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('The VirtualMerchant ID was not supplied in the authorization request.', $response->getMessage());
         $this->assertSame('4000', $response->getCode());
@@ -53,7 +76,6 @@ class ConvergeAuthorizeRequestTest extends TestCase
     {
         $this->setMockHttpResponse('NoPINFailureResponse.txt');
         $response = $this->request->send();
-        
         $this->assertFalse($response->isSuccessful());
         $this->assertSame('The PIN was not supplied in the authorization request.', $response->getMessage());
         $this->assertSame('4013', $response->getCode());

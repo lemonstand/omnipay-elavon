@@ -27,7 +27,6 @@ class ConvergeGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->authorize($this->options);
         $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergeAuthorizeRequest', $request);
-
         $this->assertSame('10.00', (string) $request->getAmount());
         $this->assertSame('1.23', (string) $request->getSslSalesTax());
         $this->assertSame('1', (string) $request->getSslInvoiceNumber());
@@ -44,7 +43,6 @@ class ConvergeGatewayTest extends GatewayTestCase
     {
         $request = $this->gateway->purchase($this->options);
         $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergePurchaseRequest', $request);
-
         $this->assertSame('10.00', (string) $request->getAmount());
         $this->assertSame('1.23', (string) $request->getSslSalesTax());
         $this->assertSame('1', (string) $request->getSslInvoiceNumber());

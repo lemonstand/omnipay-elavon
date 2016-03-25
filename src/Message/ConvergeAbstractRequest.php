@@ -7,9 +7,9 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
     protected $testEndpoint = 'https://demo.myvirtualmerchant.com/VirtualMerchantDemo';
     protected $liveEndpoint = 'https://www.myvirtualmerchant.com/VirtualMerchant';
 
-    protected function getEndpoint()
+    public function getEndpoint()
     {
-        return ($this->getTestMode()) ? $this->getTestEndpoint() : $this->getLiveEndpoint();
+        return ($this->getTestMode()) ? $this->testEndpoint : $this->liveEndpoint;
     }
 
     public function getMerchantId()
@@ -100,16 +100,6 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
     public function setSslLastName($value)
     {
         return $this->setParameter('ssl_last_name', $value);
-    }
-
-    public function getTestEndpoint()
-    {
-        return $this->testEndpoint;
-    }
-
-    public function getLiveEndpoint()
-    {
-        return $this->liveEndpoint;
     }
 
     protected function createResponse($response)
