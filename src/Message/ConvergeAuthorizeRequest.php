@@ -23,7 +23,8 @@ class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
             'ssl_address2' => $this->getCard()->getAddress2(),
             'ssl_city' => $this->getCard()->getCity(),
             'ssl_state' => $this->getCard()->getState(),
-            'ssl_country' => $this->getCard()->getCountry()
+            'ssl_country' => $this->getCard()->getCountry(),
+            'ssl_avs_zip' => $this->getCard()->getPostcode()
         );
 
         return array_merge($this->getBaseData(), $data);
