@@ -38,4 +38,9 @@ class ConvergeResponse extends AbstractResponse
 
         return $this->data['ssl_result'];
     }
+
+    public function getCardToken()
+    {
+        return (isset($this->data['ssl_token'])) ? $this->data['ssl_token'] : null;
+    }
 }
