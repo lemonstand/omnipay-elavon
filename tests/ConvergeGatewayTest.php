@@ -54,4 +54,30 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('testpassword1', $request->getPassword());
         $this->assertSame('USD', $request->getCurrency());
     }
+
+    public function testPurchaseChargeCard()
+    {
+        $request = $this->gateway->purchase(array(
+            'amount'    => 10.00,
+            'token'     => '7595301425001111',
+            'ssl_show_form' => 'false',
+            'ssl_result_format' => 'ASCII',
+            'merchantId' => 'testmerchant1',
+            'username' => 'testusername1',
+            'password' => 'testpassword1',
+            'currency' => 'USD'
+        ));
+
+        $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergePurchaseRequest', $request);
+        $this->assertSame('10.00', (string) $request->getAmount());
+        $this->assertSame('false', (string) $request->getSslShowForm());
+        $this->assertSame('ASCII', (string) $request->getSslResultFormat());
+        $this->assertSame('testmerchant1', $request->getMerchantId());
+        $this->assertSame('testusername1', $request->getUsername());
+        $this->assertSame('testpassword1', $request->getPassword());
+        $this->assertSame('testpassword1', $request->getPassword());
+        $this->assertSame('USD', $request->getCurrency());
+    }
+
+
 }

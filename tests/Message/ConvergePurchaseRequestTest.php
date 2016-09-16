@@ -81,4 +81,31 @@ class ConvergePurchaseRequestTest extends TestCase
         $this->assertSame('The PIN was not supplied in the authorization request.', $response->getMessage());
         $this->assertSame('4013', $response->getCode());
     }
+
+    public function testPurchaseChargeCardToken()
+    {
+        $this->setMockHttpResponse('ConvergePurchaseCreditCardToken.txt');
+
+        $request = new ConvergePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+        $request->initialize(
+            array(
+                'amount'    => 10.00,
+                'token'     => '7595301425001111',
+                'cardReference' => '7595301425001111',
+                'ssl_show_form' => 'false',
+                'ssl_result_format' => 'ASCII',
+                'merchantId' => 'testmerchant1',
+                'username' => 'testusername1',
+                'password' => 'testpassword1',
+                'currency' => 'USD'
+            )
+        );
+
+        $response = $request->send();
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('APPROVED', $response->getMessage());
+        $this->assertSame('0', $response->getCode());
+        $this->assertSame('00000000-0000-0000-0000-00000000000', $response->getTransactionReference());
+    }
+
 }
