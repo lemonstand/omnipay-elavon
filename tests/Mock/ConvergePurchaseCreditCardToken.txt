@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Date: Wed, 20 Feb 2013 13:55:50 GMT
+Server: Apache
+Content-Length: 214
+Connection: close
+Content-Type: text/plain; charset=utf-8
+
+ssl_status=TEST MODE
+ssl_card_number=41**********1111
+ssl_exp_date=0117
+ssl_amount=10.00
+ssl_salestax=1.23
+ssl_invoice_number=1
+ssl_departure_date=
+ssl_completion_date=
+ssl_issue_points=
+ssl_promo_code=
+ssl_enrollment=
+ssl_result=0
+ssl_result_message=APPROVED
+ssl_txn_id=00000000-0000-0000-0000-00000000000
+ssl_approval_code=123456
+ssl_cvv2_response=P
+ssl_avs_response=X
+ssl_account_balance=0.00
+ssl_txn_time=05/13/2015 07:21:58 PM
+ssl_loyalty_account_balance=
+ssl_loyalty_program=
+ssl_access_code=
+ssl_tender_amount=
+ssl_account_status=
