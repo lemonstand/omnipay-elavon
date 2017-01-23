@@ -20,7 +20,7 @@ class ConvergeGateway extends AbstractGateway
             'merchantId' => '',
             'username' => '',
             'password' => '',
-            'ssl_show_form' => true,
+            'ssl_show_form' => false,
             'ssl_result_format' => 'ASCII',
         );
     }
