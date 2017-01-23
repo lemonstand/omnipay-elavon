@@ -21,7 +21,7 @@ class ConvergeGenerateTokenRequestTest extends TestCase
         $this->setMockHttpResponse('ConvergeCreateCardResponse.txt');
         $response = $this->request->send();
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('7595301425001111', $response->getCardToken());
+        $this->assertSame('7595301425001111', $response->getCardReference());
     }
 
 }
