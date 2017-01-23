@@ -117,6 +117,8 @@ class ConvergeGateway extends AbstractGateway
             'merchantId' => '',
             'username' => '',
             'password' => '',
+            'ssl_show_form' => false,
+            'ssl_result_format' => 'ASCII',
         );
     }
 
@@ -181,6 +183,26 @@ class ConvergeGateway extends AbstractGateway
     public function setPassword($value)
     {
         return $this->setParameter('password', $value);
+    }
+
+    public function getSslShowForm()
+    {
+        return $this->getParameter('ssl_show_form');
+    }
+
+    public function setSslShowForm($value)
+    {
+        return $this->setParameter('ssl_show_form', $value);
+    }
+
+    public function getSslResultFormat()
+    {
+        return $this->getParameter('ssl_result_format');
+    }
+
+    public function setSslResultFormat($value)
+    {
+        return $this->setParameter('ssl_result_format', $value);
     }
 
     /**
