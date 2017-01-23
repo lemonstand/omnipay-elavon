@@ -1,4 +1,6 @@
-<?php namespace Omnipay\Elavon\Message;
+<?php
+
+namespace Omnipay\Elavon\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
@@ -39,8 +41,20 @@ class ConvergeResponse extends AbstractResponse
         return $this->data['ssl_result'];
     }
 
+    /**
+     * Get the credit card token.
+     *
+     * Note that this function should be called as getCardReference() as per omnipay standards.
+     *
+     * @return string
+     */
     public function getCardToken()
     {
         return (isset($this->data['ssl_token'])) ? $this->data['ssl_token'] : null;
+    }
+
+    public function getCardReference()
+    {
+        return $this->getCardToken();
     }
 }
