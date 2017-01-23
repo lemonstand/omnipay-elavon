@@ -1,5 +1,109 @@
-<?php namespace Omnipay\Elavon\Message;
+<?php
 
+namespace Omnipay\Elavon\Message;
+
+/**
+ * Elavon's Converge Authorize Request
+ *
+ * This class processes form post requests using the Elavon/Converge gateway as documented here:
+ * https://resourcecentre.elavonpaymentgateway.com/index.php/download-developer-guide
+ *
+ * Also here: https://www.convergepay.com/converge-webapp/developer/#/welcome
+ *
+ * ### Test Mode
+ *
+ * In order to begin testing you will need the following parameters from Elavon/Converge:
+ *
+ * * merchantId, aka ssl_merchant_id
+ * * username, aka ssl_user_id
+ * * password, aka ssl_pin
+ *
+ * These parameters are issued for a short time only.  You need to contact Converge to request an extension
+ * a few days before these parameters expire.
+ *
+ * ### Example
+ *
+ * #### Initialize Gateway
+ *
+ * <code>
+ * //
+ * // Put your gateway credentials here.
+ * //
+ * $credentials = array(
+ *     'merchantId'        => '000000',
+ *     'username'          => 'USERNAME',
+ *     'password'          => 'PASSWORD'
+ *     'testMode'          => true,            // Or false if you want to test production mode
+ * );
+ *
+ * // Create a gateway object
+ * // (routes to GatewayFactory::create)
+ * $gateway = Omnipay::create('Elavon_Converge');
+ *
+ * // Initialise the gateway
+ * $gateway->initialize($credentials);
+ * </code>
+ *
+ * #### Direct Credit Card Authorize
+ *
+ * <code>
+ * // Create a credit card object
+ * // The card number doesn't appear to matter in test mode.
+ * $card = new CreditCard(array(
+ *     'firstName'             => 'Example',
+ *     'lastName'              => 'Customer',
+ *     'number'                => '4444333322221111',
+ *     'expiryMonth'           => '01',
+ *     'expiryYear'            => '2020',
+ *     'cvv'                   => '123',
+ *     'billingAddress1'       => '1 Scrubby Creek Road',
+ *     'billingCountry'        => 'AU',
+ *     'billingCity'           => 'Scrubby Creek',
+ *     'billingPostcode'       => '4999',
+ *     'billingState'          => 'QLD',
+ * ));
+ *
+ * // Do an authorize transaction on the gateway
+ * try {
+ *     $transaction = $gateway->authorize(array(
+ *         'amount'        => '10.00',
+ *         'currency'      => 'USD',
+ *         'description'   => 'This is a test purchase transaction.',
+ *         'card'          => $card,
+ *     ));
+ *     $response = $transaction->send();
+ *     $data = $response->getData();
+ *     echo "Gateway authorize response data == " . print_r($data, true) . "\n";
+ *
+ *     if ($response->isSuccessful()) {
+ *         echo "Authorize transaction was successful!\n";
+ *     }
+ * } catch (\Exception $e) {
+ *     echo "Exception caught while attempting authorize.\n";
+ *     echo "Exception type == " . get_class($e) . "\n";
+ *     echo "Message == " . $e->getMessage() . "\n";
+ * }
+ * </code>
+ *
+ * ### Quirks
+ *
+ * Two additional parameters need to be sent with every request.  These should be set to defaults
+ * in the Gateway class but in case they are not, set them to the following values as shown on
+ * every transaction request before calling $transaction->send():
+ *
+ * <code>
+ * $transaction->setSslShowForm('false');
+ * $transaction->setSslResultFormat('ASCII');
+ * </code>
+ *
+ * This gateway supports authorize() but does not support capture() so there is no way to capture
+ * a previous authorization.  I am guessing that the standard procedure is to abandon the previous
+ * authorize and issue a purchase() request in its place.
+ *
+ * @link https://www.myvirtualmerchant.com/VirtualMerchant/
+ * @link https://resourcecentre.elavonpaymentgateway.com/index.php/download-developer-guide
+ * @see \Omnipay\Elavon\ConvergeGateway
+ */
 class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
 {
     protected $transactionType = 'ccauthonly';
