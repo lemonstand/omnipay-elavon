@@ -133,13 +133,4 @@ class ConvergeGenerateTokenRequest extends ConvergeAbstractRequest
 
         return array_merge($this->getBaseData(), $data);
     }
-
-    public function sendData($data)
-    {
-        $httpResponse = $this->httpClient->post($this->getEndpoint() . '/process.do', null, http_build_query($data))
-            ->setHeader('Content-Type', 'application/x-www-form-urlencoded')
-            ->send();
-
-        return $this->createResponse($httpResponse->getBody());
-    }
 }

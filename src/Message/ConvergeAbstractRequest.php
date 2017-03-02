@@ -332,4 +332,13 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
 
         return $data;
     }
+
+    public function sendData($data)
+    {
+        $httpResponse = $this->httpClient->post($this->getEndpoint() . '/process.do', null, http_build_query($data))
+            ->setHeader('Content-Type', 'application/x-www-form-urlencoded')
+            ->send();
+
+        return $this->createResponse($httpResponse->getBody());
+    }
 }

@@ -216,11 +216,41 @@ class ConvergeGateway extends AbstractGateway
 
     /**
      * @param array $parameters
+     *
+     * @return \Omnipay\Elavon\Message\ConvergeCaptureRequest
+     */
+    public function capture(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Elavon\Message\ConvergeCaptureRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
      * @return \Omnipay\Elavon\Message\ConvergePurchaseRequest
      */
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Elavon\Message\ConvergePurchaseRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Elavon\Message\ConvergeRefundRequest
+     */
+    public function refund(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Elavon\Message\ConvergeRefundRequest', $parameters);
+    }
+
+    /**
+     * @param array $parameters
+     *
+     * @return \Omnipay\Elavon\Message\ConvergeVoidRequest
+     */
+    public function void(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Elavon\Message\ConvergeVoidRequest', $parameters);
     }
 
     /**

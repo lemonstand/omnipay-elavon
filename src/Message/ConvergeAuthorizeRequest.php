@@ -96,10 +96,6 @@ namespace Omnipay\Elavon\Message;
  * $transaction->setSslResultFormat('ASCII');
  * </code>
  *
- * This gateway supports authorize() but does not support capture() so there is no way to capture
- * a previous authorization.  I am guessing that the standard procedure is to abandon the previous
- * authorize and issue a purchase() request in its place.
- *
  * @link https://www.myvirtualmerchant.com/VirtualMerchant/
  * @link https://resourcecentre.elavonpaymentgateway.com/index.php/download-developer-guide
  * @see \Omnipay\Elavon\ConvergeGateway
@@ -147,14 +143,5 @@ class ConvergeAuthorizeRequest extends ConvergeAbstractRequest
         }
 
         return array_merge($this->getBaseData(), $data);
-    }
-
-    public function sendData($data)
-    {
-        $httpResponse = $this->httpClient->post($this->getEndpoint() . '/process.do', null, http_build_query($data))
-            ->setHeader('Content-Type', 'application/x-www-form-urlencoded')
-            ->send();
-
-        return $this->createResponse($httpResponse->getBody());
     }
 }
