@@ -2,16 +2,17 @@
 
 namespace Omnipay\Elavon\Message;
 
+
 use Omnipay\Tests\TestCase;
 
-class ConvergeCaptureRequestTest extends TestCase
+class ConvergeRefundRequestTest extends TestCase
 {
-    /** @var ConvergeCaptureRequest */
+    /** @var  ConvergeRefundRequest */
     protected $request;
 
     public function setUp()
     {
-        $this->request = new ConvergeCaptureRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->request = new ConvergeRefundRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
                 'transactionReference'=>'00000000-0000-0000-0000-00000000000',
@@ -38,7 +39,7 @@ class ConvergeCaptureRequestTest extends TestCase
 
     public function testCaptureSuccess()
     {
-        $this->setMockHttpResponse('ConvergeCaptureResponse.txt');
+        $this->setMockHttpResponse('ConvergeRefundResponse.txt');
 
         $response = $this->request->send();
         $this->assertTrue($response->isSuccessful());
@@ -46,5 +47,4 @@ class ConvergeCaptureRequestTest extends TestCase
         $this->assertSame('0', $response->getCode());
         $this->assertSame('00000000-0000-0000-0000-00000000000', $response->getTransactionReference());
     }
-
 }

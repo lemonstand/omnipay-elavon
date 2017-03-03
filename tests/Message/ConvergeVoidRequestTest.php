@@ -2,20 +2,20 @@
 
 namespace Omnipay\Elavon\Message;
 
+
 use Omnipay\Tests\TestCase;
 
-class ConvergeCaptureRequestTest extends TestCase
+class ConvergeVoidRequestTest extends TestCase
 {
-    /** @var ConvergeCaptureRequest */
+    /** @var  ConvergeVoidRequest */
     protected $request;
 
     public function setUp()
     {
-        $this->request = new ConvergeCaptureRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->request = new ConvergeVoidRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
-                'transactionReference'=>'00000000-0000-0000-0000-00000000000',
-                'amount'=>10.00
+                'transactionReference'=>'00000000-0000-0000-0000-00000000000'
             )
         );
     }
@@ -28,17 +28,9 @@ class ConvergeCaptureRequestTest extends TestCase
         $this->request->setTransactionReference('00000000-0000-0000-0000-00000000000');
     }
 
-    public function testAmount()
-    {
-        $this->assertEquals('10.00', $this->request->getAmount());
-        $this->assertSame($this->request, $this->request->setAmount(15.00));
-        $this->assertEquals('15.00', $this->request->getAmount());
-        $this->request->setAmount(10.00);
-    }
-
     public function testCaptureSuccess()
     {
-        $this->setMockHttpResponse('ConvergeCaptureResponse.txt');
+        $this->setMockHttpResponse('ConvergeVoidResponse.txt');
 
         $response = $this->request->send();
         $this->assertTrue($response->isSuccessful());
@@ -46,5 +38,4 @@ class ConvergeCaptureRequestTest extends TestCase
         $this->assertSame('0', $response->getCode());
         $this->assertSame('00000000-0000-0000-0000-00000000000', $response->getTransactionReference());
     }
-
 }
