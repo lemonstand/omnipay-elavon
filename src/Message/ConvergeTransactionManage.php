@@ -32,5 +32,5 @@ abstract class ConvergeTransactionManage extends ConvergeAbstractRequest
         return array_merge($this->getBaseData(), $data);
     }
 
-    protected abstract function manageValidate();
+    abstract protected function manageValidate();
 }
