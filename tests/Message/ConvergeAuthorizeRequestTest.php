@@ -4,6 +4,9 @@ use Omnipay\Tests\TestCase;
 
 class ConvergeAuthorizeRequestTest extends TestCase
 {
+    /** @var  ConvergeAuthorizeRequest */
+    protected $request;
+
     public function setUp()
     {
         $this->request = new ConvergeAuthorizeRequest($this->getHttpClient(), $this->getHttpRequest());
@@ -41,6 +44,12 @@ class ConvergeAuthorizeRequestTest extends TestCase
     {
         $this->assertSame($this->request, $this->request->setTestMode(false));
         $this->assertSame('https://www.myvirtualmerchant.com/VirtualMerchant', $this->request->getEndpoint());
+    }
+
+    public function testIntegrationTesting()
+    {
+        $this->assertSame($this->request, $this->request->setIntegrationTesting(false));
+        $this->assertFalse($this->request->getIntegrationTesting());
     }
 
     public function testGetData()
