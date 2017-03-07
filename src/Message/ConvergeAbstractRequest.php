@@ -310,6 +310,30 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
         return $this->setParameter('ssl_last_name', $value);
     }
 
+    /**
+     * Get the IntegrationTesting boolean value. If this is true, you can run test transactions that actually create a
+     * transaction in an Elavon account so you can then run tests like a refund.
+     *
+     * @return bool
+     */
+    public function getIntegrationTesting()
+    {
+        return $this->getParameter('integrationTesting');
+    }
+
+    /**
+     * Set the IntegrationTesting boolean value. If this is true, you can run test transactions that actually create a
+     * transaction in an Elavon account so you can then run tests like a refund.
+     *
+     * @param bool $value
+     *
+     * @return ConvergeAbstractRequest provides a fluent interface
+     */
+    public function setIntegrationTesting($value)
+    {
+        return $this->setParameter('integrationTesting', $value);
+    }
+
     protected function createResponse($response)
     {
         return $this->response = new ConvergeResponse($this, $response);
@@ -324,7 +348,7 @@ abstract class ConvergeAbstractRequest extends \Omnipay\Common\Message\AbstractR
             'ssl_merchant_id' => $this->getMerchantId(),
             'ssl_user_id' => $this->getUsername(),
             'ssl_pin' => $this->getPassword(),
-            'ssl_test_mode' => ($this->getTestMode()) ? 'true' : 'false',
+            'ssl_test_mode' => ($this->getTestMode() && !$this->getIntegrationTesting()) ? 'true' : 'false',
             'ssl_show_form' => ($this->getSslShowForm() && ($this->getSslShowForm() != 'false')) ? 'true' : 'false',
             'ssl_result_format' => $this->getSslResultFormat(),
             'ssl_invoice_number' => $this->getSslInvoiceNumber(),

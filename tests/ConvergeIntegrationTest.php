@@ -63,18 +63,105 @@ class ConvergeIntegrationTest extends TestCase
         }
     }
 
+    /**
+     * Test an authorization only followed by the capture of that transaction
+     */
     public function testAuthCapture()
     {
         $authResponse = $this->gateway->authorize(
             array(
                 'amount'=>'10.00',
                 'card'=>$this->getValidCard(),
-                'ssl_invoice_number'=>'1'
+                'ssl_invoice_number'=>'1',
+                'integrationTesting'=>true
             )
         )->send();
         $this->assertTrue($authResponse->isSuccessful());
-        echo '<pre>';
-        print_r($authResponse->getData());
-        echo '</pre>';
+        $this->assertEquals('APPROVAL', $authResponse->getMessage());
+
+        $captureResponse = $this->gateway->capture(
+            array(
+                'amount'=>'10.00',
+                'transactionReference'=>$authResponse->getTransactionReference(),
+                'integrationTesting'=>true
+            )
+        )->send();
+
+        $this->assertTrue($captureResponse->isSuccessful());
+        $this->assertEquals('APPROVAL', $captureResponse->getMessage());
+    }
+
+    /**
+     * Test a purchase followed by a refund of that purchase
+     */
+    public function testPurchaseRefund()
+    {
+        $purchaseResponse = $this->gateway->purchase(
+            array(
+                'amount'=>'20.00',
+                'card'=>$this->getValidCard(),
+                'ssl_invoice_number'=>2,
+                'integrationTesting'=>true
+            )
+        )->send();
+
+        $this->assertTrue($purchaseResponse->isSuccessful());
+        $this->assertEquals('APPROVAL', $purchaseResponse->getMessage());
+
+        $refundResponse = $this->gateway->refund(
+            array(
+                'amount'=>'20.00',
+                'transactionReference'=>$purchaseResponse->getTransactionReference(),
+                'integrationTesting'=>true
+            )
+        )->send();
+
+        $this->assertTrue($refundResponse->isSuccessful());
+        $this->assertEquals('APPROVAL', $refundResponse->getMessage());
+    }
+
+
+    /**
+     * Test a purchase followed by a void of that purchase
+     */
+    public function testPurchaseVoid()
+    {
+        $purchaseResponse = $this->gateway->purchase(
+            array(
+                'amount'=>'30.00',
+                'card'=>$this->getValidCard(),
+                'ssl_invoice_number'=>3,
+                'integrationTesting'=>true
+            )
+        )->send();
+
+        $this->assertTrue($purchaseResponse->isSuccessful());
+        $this->assertEquals('APPROVAL', $purchaseResponse->getMessage());
+
+        $voidResponse = $this->gateway->void(
+            array(
+                'transactionReference'=>$purchaseResponse->getTransactionReference(),
+                'integrationTesting'=>true
+            )
+        )->send();
+
+        $this->assertTrue($voidResponse->isSuccessful());
+        $this->assertEquals('APPROVAL', $voidResponse->getMessage());
+    }
+
+    /**
+     * This allows for the usage of Elavon's test card data instead of using the default data from Omnipay
+     *
+     * @return array
+     */
+    public function getValidCard()
+    {
+        $card = parent::getValidCard();
+        $card['number'] = '4124939999999990';
+        $card['expiryMonth'] = '12';
+        $card['expiryYear'] = '19';
+
+        return $card;
+
     }
 }
