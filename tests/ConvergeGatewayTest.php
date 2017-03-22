@@ -4,6 +4,11 @@ use Omnipay\Tests\GatewayTestCase;
 
 class ConvergeGatewayTest extends GatewayTestCase
 {
+    /** @var  ConvergeGateway */
+    protected $gateway;
+    /** @var  array */
+    protected $options;
+
     public function setUp()
     {
         parent::setUp();
@@ -79,5 +84,51 @@ class ConvergeGatewayTest extends GatewayTestCase
         $this->assertSame('USD', $request->getCurrency());
     }
 
+    public function testCapture()
+    {
+        $request = $this->gateway->capture(
+            array(
+                'amount'=>10.00,
+                'transactionReference'=>100001
+            )
+        );
 
+        $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergeCaptureRequest', $request);
+        $this->assertSame('10.00', $request->getAmount());
+        $this->assertSame(false, $request->getSslShowForm());
+        $this->assertSame('ASCII', $request->getSslResultFormat());
+        $this->assertSame(100001, $request->getTransactionReference());
+    }
+
+    public function testRefund()
+    {
+        $request = $this->gateway->refund(
+            array(
+                'amount'=>10.00,
+                'transactionReference'=>100001
+            )
+        );
+
+        $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergeRefundRequest', $request);
+        $this->assertSame('10.00', $request->getAmount());
+        $this->assertSame(false, $request->getSslShowForm());
+        $this->assertSame('ASCII', $request->getSslResultFormat());
+        $this->assertSame(100001, $request->getTransactionReference());
+    }
+
+    public function testVoid()
+    {
+        $request = $this->gateway->void(
+            array(
+                'amount'=>10.00,
+                'transactionReference'=>100001
+            )
+        );
+
+        $this->assertInstanceOf('Omnipay\Elavon\Message\ConvergeVoidRequest', $request);
+        $this->assertSame('10.00', $request->getAmount());
+        $this->assertSame(false, $request->getSslShowForm());
+        $this->assertSame('ASCII', $request->getSslResultFormat());
+        $this->assertSame(100001, $request->getTransactionReference());
+    }
 }
